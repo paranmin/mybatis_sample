@@ -12,7 +12,7 @@
    <Loggers>
       <Logger name="kr.or.dgit.mybatis_sample" level="trace" additivity="true">
          <AppenderRef ref="Console" />
-         <!-- <AppenderRef ref="file" /> -->
+         <AppenderRef ref="file" />
       </Logger>
  
       <Root level="debug">
