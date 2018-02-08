@@ -4,13 +4,13 @@
       <Console name="Console" target="SYSTEM_OUT">
          <PatternLayout pattern="%5p [%t] - %m%n" />
       </Console>
-      <File name="file" fileName="./logs/mybatis_study.log" append="false">
+      <File name="file" fileName="./logs/mybatis_sample.log" append="true">
          <PatternLayout pattern="%5p [%t] - %m%n" />
       </File>
    </Appenders>
 
    <Loggers>
-      <Logger name="kr.or.dgit.mybatis_sample" level="trace" additivity="false">
+      <Logger name="kr.or.dgit.mybatis_sample" level="trace" additivity="true">
          <AppenderRef ref="Console" />
          <!-- <AppenderRef ref="file" /> -->
       </Logger>
