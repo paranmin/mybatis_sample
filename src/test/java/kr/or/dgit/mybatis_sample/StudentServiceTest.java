@@ -64,4 +64,23 @@ public class StudentServiceTest {
 		int res = service.insertStudentWithAPI(std);
 		assertEquals(1, res);
 	}
+	
+	@Test
+	public void test4UpdateStudentWithAPI() {
+		Student std = new Student();
+		std.setStudId(5);
+		std.setName("홍길동2");
+		std.setEmail("test2@test.com");
+		std.setPhone(new PhoneNumber("010-555-7777"));
+		std.setDob(new Date());
+		
+		System.out.println(std);
+		int res = service.updateStudentWithAPI(std);
+		assertEquals(1, res);
+	}
+	@Test
+	public void test5DeleteStudentWithAPI() {
+		int res = service.deleteStudentWithAPI(5);
+		assertEquals(1, res);
+	}
 }
