@@ -39,4 +39,34 @@ public class StudentService {
 		}
 		return res;
 	}
+	
+	public int updateStudent(Student student) {
+		log.debug("updateStudent()");
+		int res = -1;
+		SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
+		try {
+			StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
+			res = studentDao.updateStudent(student);
+			sqlSession.commit();
+		} catch(Exception e) {
+			sqlSession.rollback();
+			e.printStackTrace();
+		}
+		return res;
+	}
+	
+	public int deleteStudent(int no) {
+		log.debug("updateStudent()");
+		int res = -1;
+		SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
+		try {
+			StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
+			res = studentDao.deleteStudent(no);
+			sqlSession.commit();
+		} catch(Exception e) {
+			sqlSession.rollback();
+			e.printStackTrace();
+		}
+		return res;
+	}
 }

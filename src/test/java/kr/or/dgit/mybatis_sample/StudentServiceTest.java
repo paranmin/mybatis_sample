@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -62,6 +63,25 @@ public class StudentServiceTest {
 		std.setDob(newDate.getTime());
 		
 		int res = service.insertStudent(std);
+		assertEquals(1, res);
+	}
+	
+	@Test
+	public void test4UpdateStudent() {
+		Student std = new Student();
+		std.setStudId(3);
+		std.setName("홍길동1");
+		std.setEmail("test1@test.com");
+		std.setPhone(new PhoneNumber("010-999-1111"));
+		std.setDob(new Date());
+		
+		int res = service.updateStudent(std);
+		assertEquals(1, res);
+	}
+	
+	@Test
+	public void test5DeleteStudent() {
+		int res = service.deleteStudent(3);
 		assertEquals(1, res);
 	}
 }
