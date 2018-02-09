@@ -1,9 +1,9 @@
 package kr.or.dgit.mybatis_sample;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -48,27 +48,9 @@ public class StudentServiceTest {
 			System.out.println(std);
 		}
 	}
-
-	@Test
-	public void test3FindStudentWithAPI() {
-		Student std = new Student(1);
-		Student student = service.findStudentWithAPI(std);
-		assertNotNull(student);
-		assertEquals(std.getStudId(), student.getStudId());
-		System.out.println(student);
-	}
-
-	@Test
-	public void test4FindStudentAllWithAPI() {
-		List<Student> listStd = service.findStudentByAllWithAPI();
-		assertNotNull(listStd);
-		for (Student std : listStd) {
-			System.out.println(std);
-		}
-	}
 	
 	@Test
-	public void test5InsertStudent() {
+	public void test3InsertStudent() {
 		Student std = new Student();
 		std.setStudId(3);
 		std.setName("홍길동1");
@@ -80,21 +62,6 @@ public class StudentServiceTest {
 		std.setDob(newDate.getTime());
 		
 		int res = service.insertStudent(std);
-		assertEquals(1, res);
-	}
-	
-	@Test
-	public void test6InsertStudentWithAPI() {
-		Student std = new Student();
-		std.setStudId(4);
-		std.setName("홍길동2");
-		std.setEmail("hongidong2@test.com");
-		std.setPhone(new PhoneNumber("010-3333-4444"));
-		
-		Calendar newDate = GregorianCalendar.getInstance();
-		newDate.set(2020, 5, 10);
-		std.setDob(newDate.getTime());
-		int res = service.insertStudentWithAPI(std);
 		assertEquals(1, res);
 	}
 }

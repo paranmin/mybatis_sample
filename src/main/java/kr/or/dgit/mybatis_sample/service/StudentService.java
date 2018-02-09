@@ -12,7 +12,6 @@ import kr.or.dgit.mybatis_sample.util.MyBatisSqlSessionFactory;
 
 public class StudentService {
 	private static final Log log = LogFactory.getLog(StudentService.class);
-	private String namespace = "kr.or.dgit.mybatis_sample.dao.StudentDao.";
 	
 	public Student findStudent(Student student) {
 		log.debug("selectStudentByNo()");
@@ -30,35 +29,12 @@ public class StudentService {
 		}
 	}
 	
-	public Student findStudentWithAPI(Student student) {
-		log.debug("selectStudentByNoWithAPI()");
-		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
-			return sqlSession.selectOne(namespace + "selectStudentByNoWithAPI", student);
-		}
-	}
-	
-	public List<Student> findStudentByAllWithAPI() {
-		log.debug("selectStudentByAllWithAPI()");
-		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
-			return sqlSession.selectList(namespace + "selectStudentByAllWithAPI");
-		}
-	}
-	
 	public int insertStudent(Student student) {
 		log.debug("insertStudent()");
 		int res = -1;
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
 			StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
 			res = studentDao.insertStudent(student);
-			sqlSession.commit();
-		}
-		return res;
-	}
-	public int insertStudentWithAPI(Student student) {
-		log.debug("insertStudentWithAPI()");
-		int res = -1;
-		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
-			res = sqlSession.insert(namespace + "insertStudentWithAPI", student);
 			sqlSession.commit();
 		}
 		return res;
