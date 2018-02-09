@@ -32,25 +32,7 @@ public class StudentServiceTest {
 	}
 
 	@Test
-	public void test1FindStudent() {
-		Student std = new Student(1);
-		Student student = service.findStudent(std);
-		assertNotNull(student);
-		assertEquals(std.getStudId(), student.getStudId());
-		System.out.println(student);
-	}
-
-	@Test
-	public void test2FindStudentAll() {
-		List<Student> listStd = service.findStudentByAll();
-		assertNotNull(listStd);
-		for (Student std : listStd) {
-			System.out.println(std);
-		}
-	}
-
-	@Test
-	public void test3FindStudentWithAPI() {
+	public void test1FindStudentWithAPI() {
 		Student std = new Student(1);
 		Student student = service.findStudentWithAPI(std);
 		assertNotNull(student);
@@ -59,7 +41,7 @@ public class StudentServiceTest {
 	}
 
 	@Test
-	public void test4FindStudentAllWithAPI() {
+	public void test2FindStudentAllWithAPI() {
 		List<Student> listStd = service.findStudentByAllWithAPI();
 		assertNotNull(listStd);
 		for (Student std : listStd) {
@@ -68,28 +50,13 @@ public class StudentServiceTest {
 	}
 	
 	@Test
-	public void test5InsertStudent() {
+	public void test3InsertStudentWithAPI() {
 		Student std = new Student();
-		std.setStudId(3);
-		std.setName("홍길동1");
-		std.setEmail("hongidong1@test.com");
-		std.setPhone(new PhoneNumber("010-1111-2222"));
-		
-		Calendar newDate = GregorianCalendar.getInstance();
-		newDate.set(2018, 5, 10);
-		std.setDob(newDate.getTime());
-		
-		int res = service.insertStudent(std);
-		assertEquals(1, res);
-	}
-	
-	@Test
-	public void test6InsertStudentWithAPI() {
-		Student std = new Student();
-		std.setStudId(4);
+		std.setStudId(5);
 		std.setName("홍길동2");
 		std.setEmail("hongidong2@test.com");
 		std.setPhone(new PhoneNumber("010-3333-4444"));
+		System.out.println(std);
 		
 		Calendar newDate = GregorianCalendar.getInstance();
 		newDate.set(2020, 5, 10);
