@@ -9,7 +9,12 @@ public class Student {
 	private PhoneNumber phone;
 	private Date dob;
 
-	public Student() {}
+	public Student() {
+	}
+
+	public Student(int studId) {
+		this.studId = studId;
+	}
 
 	public Student(int studId, String name, String email, PhoneNumber phone, Date dob) {
 		this.studId = studId;
