@@ -2,6 +2,8 @@ package kr.or.dgit.mybatis_sample;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -31,4 +33,12 @@ public class StudentServiceTest {
 		System.out.println(student);
 	}
 
+	@Test
+	public void test2FindStudentAll() {
+		List<Student> listStd = service.findStudentByAll();
+		assertNotNull(listStd);
+		for (Student std : listStd) {
+			System.out.println(std);
+		}
+	}
 }
