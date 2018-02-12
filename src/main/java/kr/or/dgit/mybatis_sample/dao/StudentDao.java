@@ -9,6 +9,9 @@ public interface StudentDao {
 	Student selectStudentByNo(Student student);
 	List<Student> selectStudentByAll();
 	
+	// select map
+	List<Student> selectStudentByAllForResultMap();
+	
 	// insert
 	int insertStudent(Student student);
 	

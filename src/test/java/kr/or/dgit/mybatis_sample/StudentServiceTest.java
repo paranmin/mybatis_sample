@@ -2,6 +2,7 @@ package kr.or.dgit.mybatis_sample;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertSame;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -83,5 +84,13 @@ public class StudentServiceTest {
 	public void test5DeleteStudent() {
 		int res = service.deleteStudent(3);
 		assertEquals(1, res);
+	}
+	
+	@Test
+	public void test6selectStudentByAllForResultMap() {
+		List<Student> lists = service.selectStudentByAllForResultMap();
+		List<Student> listStd = service.findStudentByAll();
+		
+		assertSame(lists.size(), listStd.size());
 	}
 }
