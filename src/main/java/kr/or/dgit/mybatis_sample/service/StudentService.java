@@ -86,4 +86,12 @@ public class StudentService {
 			return studentDao.selectStudentByAllForHashMap();
 		}
 	}
+	
+	public Student selectStudentByNoForResultMapExtends(Student student) {
+		log.debug("selectStudentByNoForResultMapExtends()");
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
+			return studentDao.selectStudentByNoForResultMapExtends(student);
+		}
+	}
 }
