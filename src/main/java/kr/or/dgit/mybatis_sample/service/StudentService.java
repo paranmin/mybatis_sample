@@ -1,6 +1,7 @@
 package kr.or.dgit.mybatis_sample.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
@@ -69,6 +70,13 @@ public class StudentService {
 		log.debug("selectStudentByAllForResultMapWithAPI()");
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
 			return sqlSession.selectList(namespace + "selectStudentByAllForResultMapWithAPI");
+		}
+	}
+	
+	public List<Map<String, Object>> selectStudentByAllForMapWithAPI() {
+		log.debug("selectStudentByAllForResultMapWithAPI()");
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectList(namespace + "selectStudentByAllForMapWithAPI");
 		}
 	}
 }
