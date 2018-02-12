@@ -108,4 +108,13 @@ public class StudentServiceTest {
 			}
 		}
 	}
+	
+	@Test
+	public void selectStudentByNoForResultMapExtendsWithAPI() {
+		Student std = new Student(1);
+		Student student = service.findStudentWithAPI(std);
+		assertNotNull(student);
+		assertEquals(std.getStudId(), student.getStudId());
+		System.out.println(student);
+	}
 }
