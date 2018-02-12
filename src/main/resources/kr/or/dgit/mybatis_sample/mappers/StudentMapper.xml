@@ -87,8 +87,17 @@
 		<result property="address.country" column="country" />
 	</resultMap>
 	
-	<select id="selectStudentByNoForResultMapExtendsWithAPI" parameterType="Student" resultMap="">
+	<select id="selectStudentByNoForResultMapExtendsWithAPI" parameterType="Student" resultMap="StudentWithAddressResult">
 		<include refid="selectJoinAddressSql" />
 		<include refid="whereSql" />
-	</select> 
+	</select>
+	
+	<resultMap type="Student" id="StudentAssciation" extends="StudentResult">
+		<association property="address" resultMap="kr.or.dgit.mybatis_sample.dao.AddressDao.AddressResult" />
+	</resultMap>
+	
+	<select id="selectStudentByNoForAssociationWithAPI" parameterType="Student" resultMap="StudentAssciation">
+		<include refid="selectJoinAddressSql" />
+		<include refid="whereSql" />
+	</select>
 </mapper>

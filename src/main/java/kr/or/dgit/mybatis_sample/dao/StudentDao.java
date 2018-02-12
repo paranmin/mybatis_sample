@@ -16,6 +16,9 @@ public interface StudentDao {
 	// select Extends
 	Student selectStudentByNoForResultMapExtendsWithAPI(Student student);
 	
+	// select Extends Association
+	Student selectStudentByNoForAssociationWithAPI(Student student);
+	
 	// insert
 	int insertStudentWithAPI(Student student);
 	

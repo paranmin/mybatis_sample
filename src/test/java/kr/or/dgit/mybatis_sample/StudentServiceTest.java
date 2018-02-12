@@ -110,9 +110,20 @@ public class StudentServiceTest {
 	}
 	
 	@Test
-	public void selectStudentByNoForResultMapExtendsWithAPI() {
+	public void test8SelectStudentByNoForResultMapExtendsWithAPI() {
 		Student std = new Student(1);
-		Student student = service.findStudentWithAPI(std);
+		Student student = service.selectStudentByNoForResultMapExtendsWithAPI(std);
+		
+		assertNotNull(student);
+		assertEquals(std.getStudId(), student.getStudId());
+		System.out.println(student);
+	}
+	
+	@Test
+	public void test9selectStudentByNoForAssociationWithAPI() {
+		Student std = new Student(1);
+		Student student = service.selectStudentByNoForAssociationWithAPI(std);
+		
 		assertNotNull(student);
 		assertEquals(std.getStudId(), student.getStudId());
 		System.out.println(student);
