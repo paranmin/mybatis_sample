@@ -29,5 +29,6 @@
 	
 	<mappers>
 		<mapper resource="kr/or/dgit/mybatis_sample/mappers/StudentMapper.xml" />
+		<mapper resource="kr/or/dgit/mybatis_sample/mappers/AddressMapper.xml" />
 	</mappers>
 </configuration>

@@ -17,6 +17,8 @@ public interface StudentDao {
 	// select extends
 	Student selectStudentByNoForResultMapExtends(Student student);
 	
+	Student selectStudentByNoAccociation(Student student);
+	
 	// insert
 	int insertStudent(Student student);
 	

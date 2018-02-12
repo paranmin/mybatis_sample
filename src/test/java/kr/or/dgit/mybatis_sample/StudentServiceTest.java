@@ -119,4 +119,14 @@ public class StudentServiceTest {
 		assertEquals(1, extStd.getStudId());
 		System.out.println(extStd);
 	}
+	
+	@Test
+	public void test9SelectStudentByNoAccociation() {
+		Student student = new Student();
+		student.setStudId(1);
+		
+		Student extStd = service.selectStudentByNoAccociation(student);
+		assertEquals(1, extStd.getStudId());
+		System.out.println(extStd);
+	}
 }

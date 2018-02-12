@@ -94,4 +94,12 @@ public class StudentService {
 			return studentDao.selectStudentByNoForResultMapExtends(student);
 		}
 	}
+	
+	public Student selectStudentByNoAccociation(Student student) {
+		log.debug("selectStudentByNoAccociation()");
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
+			return studentDao.selectStudentByNoAccociation(student);
+		}
+	}
 }
