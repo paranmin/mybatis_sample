@@ -9,6 +9,8 @@ public interface StudentDao {
 	Student selectStudentByNoWithAPI(Student student);
 	List<Student> selectStudentByAllWithAPI();
 	
+	List<Student> selectStudentByAllForResultMapWithAPI();
+	
 	// insert
 	int insertStudentWithAPI(Student student);
 	

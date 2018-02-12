@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.dgit.mybatis_sample.dao.StudentDao">
 	<sql id="selectSql">
-		SELECT stud_id, name, email, phone, dob FROM students
+		SELECT stud_id, name, email, phone FROM students
 	</sql>
 	<sql id="whereSql">
 		<where>
@@ -51,4 +51,21 @@
 	<delete id="deleteStudentWithAPI">
 		<include refid="deleteSql" />
 	</delete>
+	
+	<!-- resultMap 이용 -->
+	<sql id="selectSql2">
+		SELECT stud_id, name, email, phone, dob FROM students
+	</sql>
+	
+	<resultMap type="Student" id="StudentResultMap">
+		<id property="studId" column="stud_id" />
+		<result property="name" column="name" />
+		<result property="email" column="email" />
+		<result property="phone" column="phone" />
+		<result property="dob" column="dob" />
+	</resultMap>
+	
+	<select id="selectStudentByAllForResultMapWithAPI" resultMap="StudentResultMap">
+		<include refid="selectSql2" />
+	</select>
 </mapper>

@@ -78,9 +78,18 @@ public class StudentServiceTest {
 		int res = service.updateStudentWithAPI(std);
 		assertEquals(1, res);
 	}
+	
 	@Test
 	public void test5DeleteStudentWithAPI() {
 		int res = service.deleteStudentWithAPI(5);
 		assertEquals(1, res);
+	}
+	
+	@Test
+	public void test6selectStudentByAllForResultMapWithAPI() {
+		List<Student> lists = service.selectStudentByAllForResultMapWithAPI();
+		List<Student> listStd = service.findStudentByAllWithAPI();
+		
+		assertSame(listStd.size(), lists.size());
 	}
 }

@@ -14,14 +14,14 @@ public class StudentService {
 	private String namespace = "kr.or.dgit.mybatis_sample.dao.StudentDao.";
 	
 	public Student findStudentWithAPI(Student student) {
-		log.debug("selectStudentByNoWithAPI()");
+		log.debug("findStudentWithAPI()");
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
 			return sqlSession.selectOne(namespace + "selectStudentByNoWithAPI", student);
 		}
 	}
 	
 	public List<Student> findStudentByAllWithAPI() {
-		log.debug("selectStudentByAllWithAPI()");
+		log.debug("findStudentByAllWithAPI()");
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
 			return sqlSession.selectList(namespace + "selectStudentByAllWithAPI");
 		}
@@ -52,7 +52,7 @@ public class StudentService {
 	}
 	
 	public int deleteStudentWithAPI(int no) {
-		log.debug("updateStudentWithAPI()");
+		log.debug("deleteStudentWithAPI()");
 		int res = -1;
 		SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
 		try  {
@@ -63,5 +63,12 @@ public class StudentService {
 			e.printStackTrace();
 		}
 		return res;
+	}
+	
+	public List<Student> selectStudentByAllForResultMapWithAPI() {
+		log.debug("selectStudentByAllForResultMapWithAPI()");
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectList(namespace + "selectStudentByAllForResultMapWithAPI");
+		}
 	}
 }
