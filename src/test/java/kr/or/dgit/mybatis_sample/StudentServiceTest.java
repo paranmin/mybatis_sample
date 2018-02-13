@@ -18,6 +18,7 @@ import org.junit.runners.MethodSorters;
 import kr.or.dgit.mybatis_sample.dto.PhoneNumber;
 import kr.or.dgit.mybatis_sample.dto.Student;
 import kr.or.dgit.mybatis_sample.service.StudentService;
+import kr.or.dgit.mybatis_sample.type.Gender;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class StudentServiceTest {
@@ -54,7 +55,7 @@ public class StudentServiceTest {
 	@Test
 	public void test3InsertStudentWithAPI() {
 		Student std = new Student();
-		std.setStudId(5);
+		std.setStudId(3);
 		std.setName("홍길동2");
 		std.setEmail("hongidong2@test.com");
 		std.setPhone(new PhoneNumber("010-3333-4444"));
@@ -70,7 +71,7 @@ public class StudentServiceTest {
 	@Test
 	public void test4UpdateStudentWithAPI() {
 		Student std = new Student();
-		std.setStudId(5);
+		std.setStudId(3);
 		std.setName("홍길동2");
 		std.setEmail("test2@test.com");
 		std.setPhone(new PhoneNumber("010-555-7777"));
@@ -83,7 +84,7 @@ public class StudentServiceTest {
 	
 	@Test
 	public void test5DeleteStudentWithAPI() {
-		int res = service.deleteStudentWithAPI(5);
+		int res = service.deleteStudentWithAPI(3);
 		assertEquals(1, res);
 	}
 	
@@ -127,5 +128,23 @@ public class StudentServiceTest {
 		assertNotNull(student);
 		assertEquals(std.getStudId(), student.getStudId());
 		System.out.println(student);
+	}
+	
+	@Test
+	public void testAinsertEnumStudentWithAPI() {
+		Student std = new Student();
+		std.setStudId(3);
+		std.setName("홍길동2");
+		std.setEmail("hongidong2@test.com");
+		std.setPhone(new PhoneNumber("010-3333-4444"));
+		std.setGender(Gender.FEMALE);
+		System.out.println(std);
+		
+		Calendar newDate = GregorianCalendar.getInstance();
+		newDate.set(2020, 5, 10);
+		std.setDob(newDate.getTime());
+		
+		int res = service.insertEnumStudentWithAPI(std);
+		assertEquals(1, res);
 	}
 }
