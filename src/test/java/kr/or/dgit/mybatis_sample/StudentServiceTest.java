@@ -20,6 +20,7 @@ import org.junit.runners.MethodSorters;
 import kr.or.dgit.mybatis_sample.dto.PhoneNumber;
 import kr.or.dgit.mybatis_sample.dto.Student;
 import kr.or.dgit.mybatis_sample.service.StudentService;
+import kr.or.dgit.mybatis_sample.type.Gender;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class StudentServiceTest {
@@ -128,5 +129,24 @@ public class StudentServiceTest {
 		Student extStd = service.selectStudentByNoAccociation(student);
 		assertEquals(1, extStd.getStudId());
 		System.out.println(extStd);
+	}
+	
+	@Test
+	public void testAInsertEnumStudent() {
+		Student std = new Student();
+		std.setStudId(3);
+		std.setName("홍길동1");
+		std.setEmail("hongidong1@test.com");
+		std.setPhone(new PhoneNumber("010-1111-2222"));
+		std.setGender(Gender.FEMALE);
+		
+		Calendar newDate = GregorianCalendar.getInstance();
+		newDate.set(2018, 5, 10);
+		std.setDob(newDate.getTime());
+		
+		int res = service.insertEnumStudent(std);
+		assertEquals(1, res);
+		
+		test5DeleteStudent();
 	}
 }
