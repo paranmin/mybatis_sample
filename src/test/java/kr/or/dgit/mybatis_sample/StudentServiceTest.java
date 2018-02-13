@@ -132,7 +132,7 @@ public class StudentServiceTest {
 	}
 	
 	@Test
-	public void testAInsertEnumStudent() {
+	public void testFInsertEnumStudent() {
 		Student std = new Student();
 		std.setStudId(3);
 		std.setName("홍길동1");
@@ -147,6 +147,6 @@ public class StudentServiceTest {
 		int res = service.insertEnumStudent(std);
 		assertEquals(1, res);
 		
-		test5DeleteStudent();
+		service.deleteStudent(3);
 	}
 }
