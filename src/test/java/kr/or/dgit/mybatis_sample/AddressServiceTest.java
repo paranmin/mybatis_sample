@@ -2,7 +2,9 @@ package kr.or.dgit.mybatis_sample;
 
 import static org.junit.Assert.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.junit.AfterClass;
@@ -32,6 +34,36 @@ public class AddressServiceTest {
 		assertNotNull(lists);
 		
 		System.out.println(lists);
+		
+		for (Address addr : lists) {
+			System.out.println(addr);
+		}
+	}
+	
+	@Test
+	public void test2FindAddressByLimitWithAPI() {
+		Map<String, Integer> map = new HashMap<>();
+		map.put("offset", 0);
+		map.put("limit", 3);
+		List<Address> lists = service.findAddressByLimitWithAPI(map);
+		assertNotNull(lists);
+		
+		System.out.println(lists.size());
+		
+		for (Address addr : lists) {
+			System.out.println(addr);
+		}
+	}
+	
+	@Test
+	public void test3FindAddressByLimitWithAPI() {
+		Map<String, Integer> map = new HashMap<>();
+		map.put("offset", 3);
+		map.put("limit", 3);
+		List<Address> lists = service.findAddressByLimitWithAPI(map);
+		assertNotNull(lists);
+		
+		System.out.println(lists.size());
 		
 		for (Address addr : lists) {
 			System.out.println(addr);
