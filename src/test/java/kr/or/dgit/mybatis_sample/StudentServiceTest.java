@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -146,5 +147,31 @@ public class StudentServiceTest {
 		
 		int res = service.insertEnumStudentWithAPI(std);
 		assertEquals(1, res);
+	}
+	
+	@Test
+	public void testBFindAllStudentByStudentWithAPI() {
+		Student std = new Student();
+		std.setName("Timothy");
+		std.setEmail("timothy@gmail.com");
+		
+		Student findStd = service.findAllStudentByStudentWithAPI(std);
+		assertNotNull(findStd);
+		
+		assertEquals(std.getName(), findStd.getName());
+		System.out.println(findStd);
+	}
+	
+	@Test
+	public void testCFindAllStudentByMapWithAPI() {
+		Map<String, String> map = new HashMap<>();
+		map.put("name", "Timothy");
+		map.put("email", "timothy@gmail.com");
+		
+		Student findStd = service.findAllStudentByMapWithAPI(map);
+		assertNotNull(findStd);
+		
+		assertEquals(map.get("name"), findStd.getName());
+		System.out.println(findStd);
 	}
 }
