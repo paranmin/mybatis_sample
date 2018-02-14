@@ -25,6 +25,7 @@ public interface StudentDao {
 	
 	// update
 	int updateStudentWithAPI(Student student);
+	int updateSetStudentWithAPI(Student student);
 	
 	// delete
 	int deleteStudentWithAPI(int no);
@@ -32,4 +33,7 @@ public interface StudentDao {
 	// select 여러 입력 파라미터
 	Student selectAllStudentByStudentWithAPI(Student student);
 	Student selectAllStudentByMapWithAPI(Map<String, String> map);
+	
+	// resultSet 재정의
+	Map<Integer, String> selectStudentForMapWithAPI();
 }

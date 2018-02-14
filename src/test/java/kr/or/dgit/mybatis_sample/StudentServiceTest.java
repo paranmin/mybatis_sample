@@ -147,6 +147,8 @@ public class StudentServiceTest {
 		
 		int res = service.insertEnumStudentWithAPI(std);
 		assertEquals(1, res);
+		
+		service.deleteStudentWithAPI(3);
 	}
 	
 	@Test
@@ -173,5 +175,32 @@ public class StudentServiceTest {
 		
 		assertEquals(map.get("name"), findStd.getName());
 		System.out.println(findStd);
+	}
+	
+	@Test
+	public void testDFindStudentForMapWithAPI() {
+		Map<Integer, String> map = service.findStudentForMapWithAPI();
+		assertNotNull(map);
+		
+		for (Entry<Integer, String> entry : map.entrySet()) {
+			System.out.printf("Key(%s) : Value(%s) %n", entry.getKey(), entry.getValue());
+		}
+	}
+	
+	@Test
+	public void testEUpdateSetStudentWithAPI() {
+		Student student = new Student();
+		student.setStudId(1);
+		student.setPhone(new PhoneNumber("943-142-3521"));
+		student.setDob(new Date());
+		
+		int res = service.updateSetStudentWithAPI(student);
+		assertSame(1, res);
+		
+		student.setPhone(new PhoneNumber("123-112-1234"));
+		student.setDob(new GregorianCalendar(1988,12,4).getTime());
+		
+		res = service.updateSetStudentWithAPI(student);
+		assertSame(1, res);
 	}
 }

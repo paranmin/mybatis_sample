@@ -1,10 +1,13 @@
 package kr.or.dgit.mybatis_sample.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
+import org.apache.ibatis.session.ResultContext;
+import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.SqlSession;
 
 import kr.or.dgit.mybatis_sample.dto.Student;
@@ -54,6 +57,20 @@ public class StudentService {
 		SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
 		try  {
 			res = sqlSession.update(namespace + "updateStudentWithAPI", student);
+			sqlSession.commit();
+		} catch(Exception e) {
+			sqlSession.rollback();
+			e.printStackTrace();
+		}
+		return res;
+	}
+	
+	public int updateSetStudentWithAPI(Student student) {
+		log.debug("updateSetStudentWithAPI()");
+		int res = -1;
+		SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
+		try  {
+			res = sqlSession.update(namespace + "updateSetStudentWithAPI", student);
 			sqlSession.commit();
 		} catch(Exception e) {
 			sqlSession.rollback();
@@ -114,6 +131,22 @@ public class StudentService {
 		log.debug("findAllStudentByMapWithAPI()");
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
 			return sqlSession.selectOne(namespace + "selectAllStudentByMapWithAPI", map);
+		}
+	}
+	
+	public Map<Integer, String> findStudentForMapWithAPI() {
+		log.debug("findStudentForMapWithAPI()");
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			Map<Integer, String> map = new HashMap<>();
+			ResultHandler<Student> resultHandler = new ResultHandler<Student>() {
+				@Override
+				public void handleResult(ResultContext<? extends Student> resultContext) {
+					Student student = resultContext.getResultObject();
+					map.put(student.getStudId(), student.getName());
+				}
+			};
+			sqlSession.select(namespace + "selectStudentForMapWithAPI", resultHandler);
+			return map;
 		}
 	}
 }
