@@ -7,6 +7,7 @@ import static org.junit.Assert.assertSame;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -53,7 +54,7 @@ public class StudentServiceTest {
 			System.out.println(std);
 		}
 	}
-	
+
 	@Test
 	public void test3InsertStudent() {
 		Student std = new Student();
@@ -61,15 +62,15 @@ public class StudentServiceTest {
 		std.setName("홍길동1");
 		std.setEmail("hongidong1@test.com");
 		std.setPhone(new PhoneNumber("010-1111-2222"));
-		
+
 		Calendar newDate = GregorianCalendar.getInstance();
 		newDate.set(2018, 5, 10);
 		std.setDob(newDate.getTime());
-		
+
 		int res = service.insertStudent(std);
 		assertEquals(1, res);
 	}
-	
+
 	@Test
 	public void test4UpdateStudent() {
 		Student std = new Student();
@@ -78,75 +79,104 @@ public class StudentServiceTest {
 		std.setEmail("test1@test.com");
 		std.setPhone(new PhoneNumber("010-999-1111"));
 		std.setDob(new Date());
-		
+
 		int res = service.updateStudent(std);
 		assertEquals(1, res);
 	}
-	
+
 	@Test
 	public void test5DeleteStudent() {
 		int res = service.deleteStudent(3);
 		assertEquals(1, res);
 	}
-	
+
 	@Test
 	public void test6selectStudentByAllForResultMap() {
 		List<Student> lists = service.selectStudentByAllForResultMap();
 		List<Student> listStd = service.findStudentByAll();
-		
+
 		assertSame(lists.size(), listStd.size());
 	}
-	
+
 	@Test
 	public void test7selectStudentByAllForHashMap() {
-		List<Map<String,Object>> listMaps = service.selectStudentByAllForHashMap();
+		List<Map<String, Object>> listMaps = service.selectStudentByAllForHashMap();
 		List<Student> listStd = service.findStudentByAll();
-		
+
 		assertSame(listMaps.size(), listStd.size());
-		
+
 		for (Map<String, Object> map : listMaps) {
 			for (Entry<String, Object> e : map.entrySet()) {
 				System.out.printf("Key %s => Value %s%n", e.getKey(), e.getValue());
 			}
 		}
 	}
-	
+
 	@Test
 	public void test8SelectStudentByNoForResultMapExtends() {
 		Student student = new Student();
 		student.setStudId(1);
-		
+
 		Student extStd = service.selectStudentByNoForResultMapExtends(student);
 		assertEquals(1, extStd.getStudId());
 		System.out.println(extStd);
 	}
-	
+
 	@Test
 	public void test9SelectStudentByNoAccociation() {
 		Student student = new Student();
 		student.setStudId(1);
-		
+
 		Student extStd = service.selectStudentByNoAccociation(student);
 		assertEquals(1, extStd.getStudId());
 		System.out.println(extStd);
 	}
-	
+
 	@Test
-	public void testFInsertEnumStudent() {
+	public void testAInsertEnumStudent() {
 		Student std = new Student();
 		std.setStudId(3);
 		std.setName("홍길동1");
 		std.setEmail("hongidong1@test.com");
 		std.setPhone(new PhoneNumber("010-1111-2222"));
 		std.setGender(Gender.FEMALE);
-		
+
 		Calendar newDate = GregorianCalendar.getInstance();
 		newDate.set(2018, 5, 10);
 		std.setDob(newDate.getTime());
-		
+
 		int res = service.insertEnumStudent(std);
 		assertEquals(1, res);
-		
+
 		service.deleteStudent(3);
+	}
+
+	@Test
+	public void testBFindAllStudentByParam() {
+		Student findStd = service.findAllStudentByParam("Timothy", "timothy@gmail.com");
+		assertNotNull(findStd);
+		System.out.println(findStd);
+	}
+
+	@Test
+	public void testCFindAllStudentByStudent() {
+		Student std = new Student();
+		std.setName("Timothy");
+		std.setEmail("timothy@gmail.com");
+		Student findStd = service.findAllStudentByStudent(std);
+		assertNotNull(findStd);
+
+		assertEquals(std.getName(), findStd.getName());
+		System.out.println(findStd);
+	}
+
+	@Test
+	public void testDFindAllStudentByMap() {
+		Map<String, String> map = new HashMap<>();
+		map.put("name", "Timothy");
+		map.put("email", "timothy@gmail.com");
+		Student findStd = service.findAllStudentByMap(map);
+		assertNotNull(findStd);
+		System.out.println(findStd);
 	}
 }
